@@ -1,0 +1,6 @@
+# Set directory to test here
+dir="../pdir"
+cd "$dir"
+for file in *; do
+    bash "$file"
+done
