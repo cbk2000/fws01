@@ -1,1 +1,46 @@
-echo "p2"
+#!/bin/bash
+
+input_dir=../input
+output_dir=../output
+
+
+input_file=$input_dir/i2.txt
+output_file=$output_dir/o2.txt
+
+if [ ! -d "$input_dir" ]; then
+  echo "Error: $input_dir directory does not exist."
+  exit 1
+fi
+
+if [ ! -f "$input_file" ]; then
+  echo "Error: $input_file file does not exist."
+  exit 1
+fi
+
+if [ ! -d "$output_dir" ]; then
+  echo "Output directory does not exist. Creating..."
+  mkdir "$output_dir"
+  if [ ! -d "$output_dir" ]; then
+    echo "Error: Failed to create $output_dir directory."
+    exit 1
+  fi
+elif [ ! -w "$output_dir" ]; then
+  echo "Error: $output_dir directory is not writable."
+  exit 1
+fi
+
+if [ ! -f "$output_file" ]; then
+  touch "$output_file"
+fi
+
+
+input_contents=$(cat "$input_file")
+
+if [ ! -f "$output_file" ]; then
+  touch "$output_file"
+fi
+
+echo "$input_contents" >> "$output_file"
+
+echo "Done"
+exit 0
